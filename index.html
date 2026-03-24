@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acquisition OS | Felix Crego</title>
-    <meta name="description" content="Acquisition OS by Felix Crego is the operating system for diagnosing acquisition bottlenecks, offer friction, funnel gaps, and growth priorities.">
+    <meta name="description" content="Acquisition OS by Felix Crego is an AI-assisted operating system for diagnosing offer friction, funnel gaps, trust breakdowns, and acquisition priorities.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
@@ -16,9 +16,9 @@
             <div class="container nav-row">
                 <a href="index.html" class="brand">Acquisition OS</a>
                 <nav class="nav-links">
+                    <a href="#assessment">Assessment</a>
+                    <a href="#results">Results</a>
                     <a href="#system">System</a>
-                    <a href="#modules">Modules</a>
-                    <a href="#roadmap">Roadmap</a>
                 </nav>
                 <a href="https://www.felixcrego.com" class="header-link" target="_blank" rel="noreferrer">by Felix Crego</a>
             </div>
@@ -28,110 +28,284 @@
             <section class="hero">
                 <div class="container hero-grid">
                     <div class="hero-copy">
-                        <span class="eyebrow">Growth Operating System</span>
-                        <h1>See where the acquisition machine is leaking before you spend more to feed it.</h1>
-                        <p>Acquisition OS is the framework and product layer Felix Crego is building to diagnose offer friction, funnel gaps, weak page architecture, broken handoffs, and the operational bottlenecks that quietly suppress growth.</p>
+                        <span class="eyebrow">AI-Assisted Growth Operating System</span>
+                        <h1>Diagnose where the acquisition machine is leaking before you spend more to feed it.</h1>
+                        <p>Acquisition OS is a smart diagnostic layer for operators who need to understand what is actually suppressing growth: weak offer clarity, friction in the funnel, trust breakdowns, underperforming pages, slow follow-up, or the wrong priorities.</p>
                         <div class="hero-actions">
-                            <a href="#modules" class="btn btn-primary">Explore the Modules</a>
-                            <a href="#roadmap" class="btn btn-secondary">View the Roadmap</a>
+                            <a href="#assessment" class="btn btn-primary">Run the Assessment</a>
+                            <a href="#system" class="btn btn-secondary">See How It Thinks</a>
                         </div>
                         <div class="hero-pill-row">
                             <span>Offer Clarity</span>
-                            <span>Funnel Diagnosis</span>
-                            <span>Conversion Pressure</span>
-                            <span>Growth Priorities</span>
+                            <span>Funnel Pressure</span>
+                            <span>Trust Signals</span>
+                            <span>Priority Engine</span>
                         </div>
                     </div>
                     <div class="hero-panel">
                         <div class="hero-panel-card">
-                            <span class="panel-kicker">Phase 1</span>
+                            <span class="panel-kicker">Live MVP</span>
                             <h2>Operator View</h2>
                             <ul>
-                                <li>See where leads are stalling</li>
-                                <li>Score the real conversion bottlenecks</li>
-                                <li>Prioritize what actually moves yield</li>
-                                <li>Build a roadmap from signal, not guesswork</li>
+                                <li>Score the real acquisition bottlenecks</li>
+                                <li>See pressure by module and by business stage</li>
+                                <li>Get a prioritized action stack</li>
+                                <li>Layer in AI strategy commentary when available</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="system" class="section">
+            <section id="assessment" class="section">
                 <div class="container section-header">
-                    <span class="eyebrow">What It Will Be</span>
-                    <h2>A strategy system for acquisition, not another dashboard with vanity charts.</h2>
-                    <p>Acquisition OS is being built to help operators understand the entire acquisition chain: how the offer is framed, how traffic is landing, where trust is weak, where conversion drops, and what the next best growth move should be.</p>
+                    <span class="eyebrow">Assessment</span>
+                    <h2>Answer a few high-signal questions and let the system map the pressure points.</h2>
+                    <p>Acquisition OS scores four core layers: offer clarity, funnel pressure, trust strength, and operational responsiveness. Then it turns that into a diagnosis and a ranked next-step plan.</p>
                 </div>
-                <div class="container value-grid">
-                    <article class="value-card">
-                        <span class="value-number">01</span>
-                        <h3>Offer Diagnosis</h3>
-                        <p>Clarify whether the business is losing momentum because the offer is weak, unclear, or mismatched to the traffic source.</p>
-                    </article>
-                    <article class="value-card">
-                        <span class="value-number">02</span>
-                        <h3>Funnel Pressure Mapping</h3>
-                        <p>Identify where prospects lose confidence, stall, or drop out across the page, form, call, or follow-up process.</p>
-                    </article>
-                    <article class="value-card">
-                        <span class="value-number">03</span>
-                        <h3>Acquisition Prioritization</h3>
-                        <p>Rank the next highest-leverage actions so growth strategy is built around yield instead of random activity.</p>
-                    </article>
+
+                <div class="container app-grid">
+                    <section class="app-card intake-card">
+                        <div class="intake-header">
+                            <div>
+                                <span class="card-kicker">Guided Intake</span>
+                                <h3>Growth Diagnostic</h3>
+                            </div>
+                            <div class="progress-shell" aria-label="Assessment progress">
+                                <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+                                <span id="progressLabel" class="progress-label">Step 1 of 5</span>
+                            </div>
+                        </div>
+
+                        <form id="assessmentForm" class="assessment-form">
+                            <section class="step-panel active" data-step="1">
+                                <div class="question-block">
+                                    <label for="businessName">Business name</label>
+                                    <input id="businessName" name="businessName" type="text" placeholder="Company or brand name">
+                                </div>
+                                <div class="question-block">
+                                    <label for="website">Website or landing page</label>
+                                    <input id="website" name="website" type="url" placeholder="https://yourdomain.com">
+                                </div>
+                                <div class="question-block">
+                                    <label for="businessModel">What are you trying to acquire?</label>
+                                    <select id="businessModel" name="businessModel" required>
+                                        <option value="">Select one</option>
+                                        <option value="calls">Qualified calls</option>
+                                        <option value="forms">Form leads</option>
+                                        <option value="demos">Booked demos</option>
+                                        <option value="appointments">Appointments</option>
+                                        <option value="applications">Applications or recruiting volume</option>
+                                    </select>
+                                </div>
+                                <div class="question-block">
+                                    <label for="monthlyTraffic">Rough monthly traffic or lead volume</label>
+                                    <select id="monthlyTraffic" name="monthlyTraffic" required>
+                                        <option value="">Select range</option>
+                                        <option value="low">Under 1,000 visitors / low lead flow</option>
+                                        <option value="mid">1,000 - 10,000 visitors / moderate lead flow</option>
+                                        <option value="high">10,000+ visitors / high lead flow</option>
+                                    </select>
+                                </div>
+                            </section>
+
+                            <section class="step-panel" data-step="2">
+                                <div class="question-block">
+                                    <label for="offerClarity">How clear is the offer on the primary page?</label>
+                                    <input id="offerClarity" name="offerClarity" type="range" min="1" max="10" value="5">
+                                    <div class="range-meta"><span>Weak / confusing</span><strong data-range-output="offerClarity">5</strong><span>Extremely clear</span></div>
+                                </div>
+                                <div class="question-block">
+                                    <label for="differentiation">How differentiated does the offer feel from competitors?</label>
+                                    <input id="differentiation" name="differentiation" type="range" min="1" max="10" value="5">
+                                    <div class="range-meta"><span>Generic</span><strong data-range-output="differentiation">5</strong><span>Distinct</span></div>
+                                </div>
+                                <div class="question-block">
+                                    <label for="pricingConfidence">How confident are prospects when price / commitment comes up?</label>
+                                    <select id="pricingConfidence" name="pricingConfidence" required>
+                                        <option value="">Select one</option>
+                                        <option value="low">They hesitate heavily or disappear</option>
+                                        <option value="medium">Some hesitation, but manageable</option>
+                                        <option value="high">Most prospects understand the value</option>
+                                    </select>
+                                </div>
+                            </section>
+
+                            <section class="step-panel" data-step="3">
+                                <div class="question-block">
+                                    <label for="ctaStrength">How strong is the primary call to action?</label>
+                                    <input id="ctaStrength" name="ctaStrength" type="range" min="1" max="10" value="5">
+                                    <div class="range-meta"><span>Weak</span><strong data-range-output="ctaStrength">5</strong><span>Compelling</span></div>
+                                </div>
+                                <div class="question-block">
+                                    <label for="formFriction">How much friction does the page or form create?</label>
+                                    <select id="formFriction" name="formFriction" required>
+                                        <option value="">Select one</option>
+                                        <option value="high">Too much friction</option>
+                                        <option value="medium">Some friction</option>
+                                        <option value="low">Very little friction</option>
+                                    </select>
+                                </div>
+                                <div class="question-block">
+                                    <label for="dropoffPoint">Where do prospects usually drop?</label>
+                                    <select id="dropoffPoint" name="dropoffPoint" required>
+                                        <option value="">Select one</option>
+                                        <option value="landing">On the landing page</option>
+                                        <option value="form">At the form or CTA</option>
+                                        <option value="sales">After the lead comes in</option>
+                                        <option value="unclear">We are not sure</option>
+                                    </select>
+                                </div>
+                            </section>
+
+                            <section class="step-panel" data-step="4">
+                                <div class="question-block">
+                                    <label for="proofStrength">How strong are proof and trust signals?</label>
+                                    <input id="proofStrength" name="proofStrength" type="range" min="1" max="10" value="5">
+                                    <div class="range-meta"><span>Weak</span><strong data-range-output="proofStrength">5</strong><span>Very strong</span></div>
+                                </div>
+                                <div class="question-block">
+                                    <label for="followupSpeed">How fast is lead follow-up?</label>
+                                    <select id="followupSpeed" name="followupSpeed" required>
+                                        <option value="">Select one</option>
+                                        <option value="slow">Slow / inconsistent</option>
+                                        <option value="moderate">Moderate but not reliable</option>
+                                        <option value="fast">Fast and consistent</option>
+                                    </select>
+                                </div>
+                                <div class="question-block">
+                                    <label for="trackingConfidence">How confident are you in attribution and visibility?</label>
+                                    <select id="trackingConfidence" name="trackingConfidence" required>
+                                        <option value="">Select one</option>
+                                        <option value="low">Low visibility</option>
+                                        <option value="medium">Some visibility</option>
+                                        <option value="high">Clear reporting</option>
+                                    </select>
+                                </div>
+                            </section>
+
+                            <section class="step-panel" data-step="5">
+                                <div class="question-block">
+                                    <label for="biggestConstraint">What feels like the biggest constraint right now?</label>
+                                    <textarea id="biggestConstraint" name="biggestConstraint" rows="5" placeholder="Describe where growth feels blocked: weak pages, bad lead quality, slow follow-up, unclear offer, low conversion, etc."></textarea>
+                                </div>
+                                <div class="question-block">
+                                    <label for="goalWindow">What is the time window for improvement?</label>
+                                    <select id="goalWindow" name="goalWindow" required>
+                                        <option value="">Select one</option>
+                                        <option value="urgent">Need movement in the next 30 days</option>
+                                        <option value="quarter">Need a clearer system this quarter</option>
+                                        <option value="longer">Building the right foundation over time</option>
+                                    </select>
+                                </div>
+                            </section>
+
+                            <div class="step-actions">
+                                <button id="prevStepBtn" type="button" class="btn btn-secondary hidden">Back</button>
+                                <button id="nextStepBtn" type="button" class="btn btn-primary">Next Step</button>
+                                <button id="runAssessmentBtn" type="submit" class="btn btn-primary hidden">Run Acquisition OS</button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <aside id="results" class="app-card results-card">
+                        <div class="results-header">
+                            <span class="card-kicker">Results</span>
+                            <h3>Acquisition Readout</h3>
+                            <p>Your scores, ranked pressure points, and AI strategy notes will appear here.</p>
+                        </div>
+
+                        <div id="emptyState" class="empty-state">
+                            <div class="empty-icon">AO</div>
+                            <p>Run the assessment to see module scores, bottleneck priorities, and a smarter action plan.</p>
+                        </div>
+
+                        <div id="resultsContent" class="results-content hidden">
+                            <div class="score-grid">
+                                <article class="score-card">
+                                    <span>Offer Clarity</span>
+                                    <strong id="offerScore">0</strong>
+                                    <small id="offerLabel">Pending</small>
+                                </article>
+                                <article class="score-card">
+                                    <span>Funnel Pressure</span>
+                                    <strong id="funnelScore">0</strong>
+                                    <small id="funnelLabel">Pending</small>
+                                </article>
+                                <article class="score-card">
+                                    <span>Trust Strength</span>
+                                    <strong id="trustScore">0</strong>
+                                    <small id="trustLabel">Pending</small>
+                                </article>
+                                <article class="score-card">
+                                    <span>Ops Readiness</span>
+                                    <strong id="opsScore">0</strong>
+                                    <small id="opsLabel">Pending</small>
+                                </article>
+                            </div>
+
+                            <div class="summary-panel">
+                                <div>
+                                    <span class="mini-label">Overall Priority</span>
+                                    <h4 id="overallHeadline">Waiting for inputs</h4>
+                                </div>
+                                <p id="overallSummary">Complete the assessment to generate a diagnosis.</p>
+                            </div>
+
+                            <div class="priority-section">
+                                <div class="section-subheader">
+                                    <h4>Priority Stack</h4>
+                                    <button id="rerunAiBtn" type="button" class="text-button">Refresh AI Analysis</button>
+                                </div>
+                                <div id="priorityList" class="priority-list"></div>
+                            </div>
+
+                            <div class="priority-section">
+                                <div class="section-subheader">
+                                    <h4>AI Strategy Readout</h4>
+                                    <span id="aiStatus" class="ai-status">Heuristic mode</span>
+                                </div>
+                                <div id="aiAnalysis" class="ai-analysis">
+                                    <p>AI-enhanced narrative will appear here when available.</p>
+                                </div>
+                            </div>
+
+                            <div class="priority-section">
+                                <h4>Recommended Next Actions</h4>
+                                <div id="nextActions" class="action-list"></div>
+                            </div>
+                        </div>
+                    </aside>
                 </div>
             </section>
 
-            <section id="modules" class="section section-alt">
+            <section id="system" class="section section-alt">
                 <div class="container section-header">
-                    <span class="eyebrow">Core Modules</span>
-                    <h2>The first modules inside Acquisition OS.</h2>
+                    <span class="eyebrow">System Model</span>
+                    <h2>The first four modules inside Acquisition OS.</h2>
+                    <p>This MVP scores the same four layers that usually decide whether a business can turn attention into reliable acquisition yield.</p>
                 </div>
                 <div class="container module-grid">
                     <article class="module-card module-card-primary">
                         <span class="module-label">Module A</span>
-                        <h3>Growth Bottleneck Scanner</h3>
-                        <p>Diagnose the highest-friction points across traffic, messaging, pages, forms, and follow-up.</p>
+                        <h3>Offer Clarity</h3>
+                        <p>Measures whether the offer is clear, differentiated, believable, and strong enough to support acquisition.</p>
                     </article>
                     <article class="module-card">
                         <span class="module-label">Module B</span>
-                        <h3>Offer Clarity Score</h3>
-                        <p>Measure how clear, differentiated, and believable the offer is before more spend goes into acquisition.</p>
+                        <h3>Funnel Pressure</h3>
+                        <p>Surfaces where users stall, where forms add friction, and where the path from attention to action is breaking down.</p>
                     </article>
                     <article class="module-card">
                         <span class="module-label">Module C</span>
-                        <h3>Conversion Pressure Map</h3>
-                        <p>Show where confidence drops, friction rises, and the path to action starts breaking down.</p>
+                        <h3>Trust Strength</h3>
+                        <p>Looks at how proof, credibility, and conversion confidence support or weaken the buying motion.</p>
                     </article>
                     <article class="module-card">
                         <span class="module-label">Module D</span>
                         <h3>Priority Engine</h3>
-                        <p>Turn diagnosis into a ranked action plan based on leverage, not noise.</p>
+                        <p>Ranks the highest-leverage next actions so the operator knows what to fix first instead of chasing noise.</p>
                     </article>
-                </div>
-            </section>
-
-            <section id="roadmap" class="section">
-                <div class="container roadmap-wrap">
-                    <div class="section-header section-header-left">
-                        <span class="eyebrow">Roadmap</span>
-                        <h2>Prepared to become a larger operating layer.</h2>
-                        <p>The long-term vision is for Acquisition OS to sit above SEO, conversion, automation, and CRM execution as the strategic control layer that helps businesses decide what to fix next.</p>
-                    </div>
-                    <div class="roadmap-list">
-                        <div class="roadmap-item">
-                            <strong>Phase 1</strong>
-                            <span>Diagnostic framework and strategic scoring</span>
-                        </div>
-                        <div class="roadmap-item">
-                            <strong>Phase 2</strong>
-                            <span>Interactive assessments and operator dashboards</span>
-                        </div>
-                        <div class="roadmap-item">
-                            <strong>Phase 3</strong>
-                            <span>Connected workflows with FelixCRM, MarketingHub, and conversion tooling</span>
-                        </div>
-                    </div>
                 </div>
             </section>
         </main>
