@@ -14,6 +14,8 @@ const overallSummary = document.getElementById('overallSummary');
 const aiStatus = document.getElementById('aiStatus');
 const aiAnalysis = document.getElementById('aiAnalysis');
 const rerunAiBtn = document.getElementById('rerunAiBtn');
+const scanStatus = document.getElementById('scanStatus');
+const websiteScanEl = document.getElementById('websiteScan');
 
 let currentStep = 1;
 let lastResult = null;
@@ -278,6 +280,10 @@ function renderResults(result) {
   });
 
   aiStatus.textContent = 'Generating';
+  scanStatus.textContent = result.answers.website ? 'Scanning website' : 'No website';
+  websiteScanEl.innerHTML = result.answers.website
+    ? '<p>Acquisition OS is inspecting the submitted page for headings, CTAs, trust cues, forms, and visible conversion signals.</p>'
+    : '<p>No website URL was supplied, so scoring will rely more heavily on the guided intake.</p>';
   aiAnalysis.innerHTML = '<p>Acquisition OS is building a strategy readout based on your scores and answers.</p>';
 }
 
@@ -321,8 +327,16 @@ async function runAiAnalysis(result) {
 
     const data = await response.json();
     const analysis = data.analysis || {};
+    const effectiveScores = data.scoreOverrides || result.scores;
+
+    setScore('offer', effectiveScores.offer);
+    setScore('funnel', effectiveScores.funnel);
+    setScore('trust', effectiveScores.trust);
+    setScore('ops', effectiveScores.ops);
+    overallSummary.textContent = summaryForScores(effectiveScores, result.answers);
 
     aiStatus.textContent = data.mode === 'ai' ? 'AI mode' : 'Heuristic mode';
+    renderWebsiteScan(data.websiteScan);
     aiAnalysis.innerHTML = '';
 
     const blocks = [
@@ -343,8 +357,46 @@ async function runAiAnalysis(result) {
     });
   } catch (error) {
     aiStatus.textContent = 'Unavailable';
+    scanStatus.textContent = 'Unavailable';
     aiAnalysis.innerHTML = `<p>The AI layer could not respond. The local scoring engine is still active, and the priority stack above is still valid.</p>`;
+    websiteScanEl.innerHTML = '<p>The website scan could not be completed.</p>';
   } finally {
     rerunAiBtn.disabled = false;
   }
+}
+
+function renderWebsiteScan(scan) {
+  if (!scan) {
+    scanStatus.textContent = 'Unavailable';
+    websiteScanEl.innerHTML = '<p>The website scan did not return any usable data.</p>';
+    return;
+  }
+
+  if (scan.status !== 'ok') {
+    scanStatus.textContent = scan.status.replace(/_/g, ' ');
+    websiteScanEl.innerHTML = `<p>${scan.note || 'The website could not be analyzed directly.'}</p>`;
+    return;
+  }
+
+  scanStatus.textContent = 'Scanned';
+  const h1Text = Array.isArray(scan.h1s) && scan.h1s.length ? scan.h1s[0] : 'No clear H1 found';
+  const buttons = Array.isArray(scan.primaryButtons) && scan.primaryButtons.length
+    ? scan.primaryButtons.join(', ')
+    : 'No obvious CTA language found';
+
+  websiteScanEl.innerHTML = `
+    <p><strong>URL:</strong> ${escapeHtml(scan.url || '')}</p>
+    <p><strong>Headline signal:</strong> ${escapeHtml(h1Text)}</p>
+    <p><strong>Primary CTA language:</strong> ${escapeHtml(buttons)}</p>
+    <p><strong>Forms / proof / contact:</strong> ${scan.forms} form(s), ${scan.testimonialSignals} proof signal(s), phone visible: ${scan.visiblePhone ? 'yes' : 'no'}, email visible: ${scan.visibleEmail ? 'yes' : 'no'}</p>
+  `;
+}
+
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }

@@ -86,6 +86,7 @@
                                 <div class="question-block">
                                     <label for="website">Website or landing page</label>
                                     <input id="website" name="website" type="url" placeholder="https://yourdomain.com">
+                                    <small class="field-note">If you include a URL, Acquisition OS will inspect the page directly and use what it sees to influence scoring.</small>
                                 </div>
                                 <div class="question-block">
                                     <label for="businessModel">What are you trying to acquire?</label>
@@ -258,6 +259,16 @@
                                     <button id="rerunAiBtn" type="button" class="text-button">Refresh AI Analysis</button>
                                 </div>
                                 <div id="priorityList" class="priority-list"></div>
+                            </div>
+
+                            <div class="priority-section">
+                                <div class="section-subheader">
+                                    <h4>Website Scan</h4>
+                                    <span id="scanStatus" class="ai-status">Awaiting URL</span>
+                                </div>
+                                <div id="websiteScan" class="ai-analysis">
+                                    <p>Add a website in step one to let Acquisition OS inspect the page directly.</p>
+                                </div>
                             </div>
 
                             <div class="priority-section">

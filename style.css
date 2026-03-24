@@ -335,6 +335,12 @@ p {
     font-weight: 700;
 }
 
+.field-note {
+    color: #8fa5c8;
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
 .question-block input,
 .question-block select,
 .question-block textarea {
